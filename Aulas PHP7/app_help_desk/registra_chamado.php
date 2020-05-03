@@ -1,13 +1,11 @@
 <?php
-    echo '<pre>';
-    print_r($_POST);
-    echo '</pre>';
+    session_start();
 
     $_POST['titulo'] = str_replace('#', '-', $_POST['titulo']);
     $_POST['categoria'] = str_replace('#', '-', $_POST['categoria']);
     $_POST['descricao'] = str_replace('#', "-", $_POST['descricao']);
 
-    $texto = implode('#', $_POST) . PHP_EOL;
+    $texto = $_SESSION[id] . '#' . implode('#', $_POST) . PHP_EOL;
 
     # Abrindo arquivo
     $arquivo = fopen('arquivo.hd', 'a');
