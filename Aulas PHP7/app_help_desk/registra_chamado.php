@@ -5,7 +5,7 @@
     $_POST['categoria'] = str_replace('#', '-', $_POST['categoria']);
     $_POST['descricao'] = str_replace('#', "-", $_POST['descricao']);
 
-    $texto = $_SESSION[id] . '#' . implode('#', $_POST) . PHP_EOL;
+    $texto = $_SESSION['id'] . '#' . implode('#', $_POST) . PHP_EOL;
 
     # Abrindo arquivo
     $arquivo = fopen('arquivo.hd', 'a');

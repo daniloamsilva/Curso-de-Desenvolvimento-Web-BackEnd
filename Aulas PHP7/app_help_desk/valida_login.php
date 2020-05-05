@@ -6,6 +6,7 @@
     $usuario_id = null;
     $usuario_perfil_id = null;
 
+    # Perfis de login
     $perfis = [1 => 'Administrativo', 2 => 'Usuário'];
 
     # Usuários do sistema
