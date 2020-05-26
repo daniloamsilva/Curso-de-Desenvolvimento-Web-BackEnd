@@ -54,12 +54,11 @@
         $mail->Username   = 'appsendmaildams@gmail.com';                     // SMTP username
         $mail->Password   = 'appsendmail1!';                               // SMTP password
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` also accepted
-        $mail->SMTPSecure = 'tls';
-        $mail->Port       = 587;                                    // TCP port to connect to
+        $mail->Port       = 587;                                  // TCP port to connect to
 
         //Recipients
         $mail->setFrom('appsendmaildams@gmail.com', 'Web Completo Remetente');
-        $mail->addAddress('appsendmaildams@gmail.com', 'Web Completo Destinatário');     // Add a recipient
+        $mail->addAddress($mensagem->para);     // Add a recipient
         //$mail->addAddress('ellen@example.com');               // Name is optional
         //$mail->addReplyTo('info@example.com', 'Information');
         //$mail->addCC('cc@example.com');
@@ -69,14 +68,16 @@
         //$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
         //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
 
+        
+        
         // Content
         $mail->isHTML(true);                                  // Set email format to HTML
-        $mail->Subject = 'Oi. Eu sou o assunto.';
-        $mail->Body    = 'Olá eu sou o corpo deste e-mail. <strong>Toda a mensagem vai aqui.</strong>';
-        $mail->AltBody = 'Olá eu sou o corpo deste e-mail. Toda a mensagem vai aqui.';
+        $mail->Subject = $mensagem->assunto;
+        $mail->Body    = $mensagem->mensagem;
+        $mail->AltBody = 'É necessário utilizar um client que suporte HTML para ter acesso ao conteúdo dessa msg.';
 
         $mail->send();
-        echo 'Message has been sent';
+        echo 'E-mail enviado com sucesso';
     } catch (Exception $e) {
         echo "Não foi possível enviar este e-mail. Detalhes do erro: {$mail->ErrorInfo}";
     }
