@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Catálogo de filmes</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <script>
+        function getFilmes(){
+            let xmlHttp = new XMLHttpRequest();
+            xmlHttp.open('GET', 'http://localhost:8080/filmes.xml');
+
+            xmlHttp.onreadystatechange = () => {
+                if(xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                    let XMLFilmes = xmlHttp.responseText;
+                    console.log(XMLFilmes);
+                }
+
+                if(xmlHttp.readyState == 4 && xmlHttp.status == 404) {
+                    // ..
+                }
+            }
+
+            xmlHttp.send();
+        }
+    </script>
+
+</head>
+<body>
+    
+    <nav class="navbar navbar-light bg-light mb-4">
+        <div class="container">
+            <div class="navbar-brand mb-0 h1">
+                <h3>Catálogo de filmes</h3>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <button class="btn btn-success" onclick="getFilmes()">Listar filmes</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
