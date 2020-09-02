@@ -1,8 +1,20 @@
 <?php
 
     class TarefaService {
-        public function inserir(){ // create
 
+        private $conexao;
+        private $tarefa;
+
+        public function __construct(Conexao $conexao,Tarefa $tarefa){
+            $this->conexao = $conexao->conectar();
+            $this->tarefa = $tarefa;
+        }
+
+        public function inserir(){ // create
+            $query = 'INSERT INTO tb_tarefas(tarefa) VALUES (:tarefa)';
+            $stmt = $this->conexao->prepare($query);
+            $stmt->bindValue(':tarefa', $this->tarefa->tarefa);
+            $stmt->execute();
         }
 
         public function recuperar(){ // read
@@ -17,3 +29,5 @@
 
         }
     }
+
+?>
