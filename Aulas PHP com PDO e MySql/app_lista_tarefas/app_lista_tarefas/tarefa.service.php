@@ -32,6 +32,12 @@ class TarefaService {
 	}
 
 	public function atualizar() { //update
+		
+		$query = "UPDATE tb_tarefas SET tarefa = :tarefa WHERE id = :id";
+		$stmt = $this->conexao->prepare($query);
+		$stmt->bindValue(':tarefa', $this->tarefa->tarefa);
+		$stmt->bindValue(':id', $this->tarefa->id);
+		return $stmt->execute();
 
 	}
 

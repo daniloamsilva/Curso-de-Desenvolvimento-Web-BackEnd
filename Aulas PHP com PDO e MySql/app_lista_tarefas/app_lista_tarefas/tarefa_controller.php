@@ -24,6 +24,19 @@
 		$tarefaService = new TarefaService($conexao, $tarefa);
 		$tarefas = $tarefaService->recuperar();
 
+	} elseif ($acao == 'atualizar') {
+
+		$tarefa = new Tarefa();
+		$tarefa->id = $_POST['id'];
+		$tarefa->tarefa = $_POST['tarefa'];
+
+		$conexao = new Conexao();
+
+		$tarefaService = new TarefaService($conexao, $tarefa);
+		if ($tarefaService->atualizar()){
+			header('location: todas_tarefas.php');
+		}
+
 	}
 
 ?>
