@@ -33,10 +33,10 @@ class TarefaService {
 
 	public function atualizar() { //update
 		
-		$query = "UPDATE tb_tarefas SET tarefa = :tarefa WHERE id = :id";
+		$query = "UPDATE tb_tarefas SET tarefa = ? WHERE id = ?";
 		$stmt = $this->conexao->prepare($query);
-		$stmt->bindValue(':tarefa', $this->tarefa->tarefa);
-		$stmt->bindValue(':id', $this->tarefa->id);
+		$stmt->bindValue(1, $this->tarefa->tarefa);
+		$stmt->bindValue(2, $this->tarefa->id);
 		return $stmt->execute();
 
 	}
