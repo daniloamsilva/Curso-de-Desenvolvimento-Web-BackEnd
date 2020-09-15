@@ -25,7 +25,7 @@ class TarefaService {
 			FROM tb_tarefas AS t
 			LEFT JOIN tb_status AS s
 			ON (t.id_status = s.id)
-			';
+			ORDER BY t.id';
 		$stmt = $this->conexao->prepare($query);
 		$stmt->execute();
 		return $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -47,6 +47,16 @@ class TarefaService {
 		$stmt = $this->conexao->prepare($query);
 		$stmt->bindValue(':id', $this->tarefa->__get('id'));
 		$stmt->execute();
+
+	}
+
+	public function marcarRealizada() { //update
+		
+		$query = "UPDATE tb_tarefas SET id_status = ? WHERE id = ?";
+		$stmt = $this->conexao->prepare($query);
+		$stmt->bindValue(1, $this->tarefa->id_status);
+		$stmt->bindValue(2, $this->tarefa->id);
+		return $stmt->execute();
 
 	}
 }
