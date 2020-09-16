@@ -48,7 +48,7 @@
 
 		header('location: todas_tarefas.php');
 	
-	} else if($acao = 'marcarRealizada'){
+	} else if($acao == 'marcarRealizada'){
 
 		$tarefa = new Tarefa();
 		$tarefa->__set('id', $_GET['id'])->__set('id_status', 2);
@@ -59,6 +59,50 @@
 		$tarefaService->marcarRealizada();
 
 		header('location: todas_tarefas.php');
+
+	} else if($acao == "pendentes"){
+		
+		$tarefa = new Tarefa();
+		$conexao = new Conexao();
+
+		$tarefaService = new TarefaService($conexao, $tarefa);
+		$tarefas = $tarefaService->recuperarPendentes();
+
+	} else if ($acao == 'removerPendente'){
+
+		$tarefa = new Tarefa();
+		$tarefa->__set('id', $_GET['id']);
+
+		$conexao = new Conexao();
+
+		$tarefaService = new TarefaService($conexao, $tarefa);
+		$tarefaService->remover();
+
+		header('location: index.php');
+	
+	} else if($acao == 'pendenteRealizada'){
+
+		$tarefa = new Tarefa();
+		$tarefa->__set('id', $_GET['id'])->__set('id_status', 2);
+
+		$conexao = new Conexao();
+
+		$tarefaService = new TarefaService($conexao, $tarefa);
+		$tarefaService->marcarRealizada();
+
+		header('location: index.php');
+
+	} else if ($acao == 'atualizarPendente') {
+
+		$tarefa = new Tarefa();
+		$tarefa->__set('id', $_POST['id'])->__set('tarefa', $_POST['tarefa']);
+
+		$conexao = new Conexao();
+
+		$tarefaService = new TarefaService($conexao, $tarefa);
+		if ($tarefaService->atualizar()){
+			header('location: index.php');
+		}
 
 	}
 
