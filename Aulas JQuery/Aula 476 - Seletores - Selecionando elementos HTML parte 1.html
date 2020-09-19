@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JQuery</title>
+
+    <script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <h1>Selecionando elementos</h1>
+
+    <div>Div 1</div>
+    <div>Div 2</div>
+
+    <ul>
+        <li>Menu 1 - Item 1</li>
+        <li>Menu 1 - Item 2</li>
+        <li>Menu 1 - Item 3</li>
+    </ul>
+
+    <ul>
+        <li class='itemsMenu2'>Menu 2 - Item 1</li>
+        <li class='itemsMenu2'>Menu 2 - Item 2</li>
+        <li class='itemsMenu2'>Menu 2 - Item 3</li>
+    </ul>
+
+    <input type="text" placeholder="campo 1" id="inputText">
+
+    <select>
+        <option class='opcoes'>--- selecione uma opção</option>
+        <option class='opcoes'>opção 1</option>
+        <option class='opcoes'>opção 2</option>
+    </select>
+
+    <br>
+
+    <img src="carro.jpg">
+
+</body>
+
+<script>
+    
+    // Selecionar por tag
+    $('h1');
+    $('div');
+    $('ul');
+
+    // Selecionar por classe
+    $('.itemsMenu2');
+    $('.opcoes');
+
+    // Selecionar por id
+    $('#inputText');
+
+</script>
+
+</html>
