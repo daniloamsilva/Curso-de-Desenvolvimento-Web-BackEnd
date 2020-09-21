@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8">
+		<title>jQuery</title>
+
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	</head>
+
+	<body>
+		
+		<input class="exemplo1" type="text" placeholder="input 1">
+		<input type="text" placeholder="input 2">
+		<input type="text" placeholder="input 3">
+
+		<div class="exemplo1">div 1</div>
+		<div>div 2</div>
+		<div>div 3</div>
+
+		<ul class="exemplo2">
+			<li class="exemplo1">opcao 1</li>
+			<li class="exemplo1">opcao 2</li>
+			<li>opcao 3</li>
+		</ul>
+
+		<ul>
+			<li class="exemplo1">opcao 1</li>
+			<li>opcao 2</li>
+			<li>opcao 3</li>
+		</ul>
+
+	</body>
+
+	<script>
+		
+		// Selecionar elementos por classe de uma tag específica
+		$('div.exemplo1');
+
+		// Selecionar elementos por classe de uma classe específica
+		$('.exemplo2 .exemplo1');
+
+		// Atuar sobre o array de retorno dos elementos selecionados
+		$('div:first'); // Recupera o primeiro item do array
+		$('div:last'); // Recupera o segundo item do array
+		$('div:even'); // Recupera os items com index par
+		$('div:odd'); // Recupera os items com index impar
+
+	</script>
+
+</html>
