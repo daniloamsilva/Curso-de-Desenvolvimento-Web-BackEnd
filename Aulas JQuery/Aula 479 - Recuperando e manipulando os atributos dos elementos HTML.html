@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+            
+            // Acessar e alterar imagem
+            $('img').attr('src');
+            $('img').attr('src', 'esfera_2.png');
+
+            // Acessar e alterar a borda da imagem
+            $('img').attr('border');
+            $('img').attr('border', 20);
+
+            // Acessar e alterar o style da div
+            $('div').attr('style')
+            $('div').attr('style', 'background-color: blue; width: 150px; height: 150px')
+
+            // Acessar e alterar o value do input
+            $('input').attr('value', 'Eu ainda sou um input');
+
+            // Acessar e alterar o type do input
+            $('input').attr('type', 'password');
+
+        })
+    </script>
+</head>
+<body>
+    
+    <img src="esfera_1.png" border="5">
+
+    <div style="background-color: red; width: 100px; height: 100px"></div>
+
+    <input type="text" value="Eu sou um input">
+
+</body>
+</html>
