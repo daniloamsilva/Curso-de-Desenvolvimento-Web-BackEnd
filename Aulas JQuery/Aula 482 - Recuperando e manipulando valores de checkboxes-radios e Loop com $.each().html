@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+            
+            // Acessa somente o radio selecionado
+            console.log($('.sexo:checked'));
+            // Acessa somente os checkboxs selecionados
+            console.log($('.interesse:checked'));
+
+            // Imprime os indices e valores dos checkboxs selecionados
+            $.each($('.interesse:checked'), (indice, valor) => {
+                console.log(indice, valor.value);
+            });
+
+        })
+    </script>
+</head>
+<body>
+
+    <p>Sexo: </p>
+    <input type="radio" name="sexo" class="sexo" value="f" checked>Feminino<br>
+    <input type="radio" name="sexo" class="sexo" value="m">Masculino<br>
+
+    <p>Interesses: </p>
+    <input type="checkbox" name="interesse" class="interesse" value="php" checked>PHP<br>
+    <input type="checkbox" name="interesse" class="interesse" value="js">JavaScript<br>
+    <input type="checkbox" name="interesse" class="interesse" value="angular" checked>Angular<br>
+    <input type="checkbox" name="interesse" class="interesse" value="nodejs">NodeJS<br>
+
+</body>
+</html>
