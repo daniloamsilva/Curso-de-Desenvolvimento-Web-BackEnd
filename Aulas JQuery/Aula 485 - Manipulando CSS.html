@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8">
+		<title>jQuery</title>
+
+		<style>
+			.padrao{
+				background-color: azure;
+			}
+
+			.erro{
+				background-color: red;
+			}
+		</style>
+
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+		<script>
+
+			$('document').ready(() => {
+
+				// Altera os atributos css de uma tag
+					// Alteração simples
+					$('h1').css('background', 'blue');
+					// Alterações aninhadas
+					$('h3').css('background', '#ccc').css('color', 'white');
+					// Passando um objeto como parâmetro
+					$('button').css({'background' : 'red', 'height' : '50px', 'width' : '100px'});
+
+				// Alterar as classes de uma tag
+					// Adicionar uma classe
+					$('input').addClass('padrao');
+					$('textarea').addClass('erro');
+					// Verificar a exitência de uma classe
+					console.log($('textarea').hasClass('erro'));
+					// Retirar uma classe
+					$('textarea').removeClass('erro');
+
+			});
+
+		</script>
+	</head>
+
+	<body>
+		
+		<div>
+			<h1>Barra de navegação da aplicação</h1>
+		</div>
+
+		<div>
+			<h3>Contato</h3>
+			<hr />
+
+			<p>Nome:</p>
+			<input type="text" />
+			<br />
+
+			<p>Email:</p>
+			<input type="text" />
+			<br />
+
+			<p>Mensagem:</p>
+			<textarea></textarea>
+			<br />
+
+			<button type="button">Enviar</button>
+		</div>
+	</body>
+
+</html>
