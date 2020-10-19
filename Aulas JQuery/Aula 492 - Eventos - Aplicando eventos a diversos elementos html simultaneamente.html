@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8">
+		<title>jQuery</title>
+
+		<style>
+			
+			#divExterna {
+				background-color: #CCC;
+				width: 80px;
+				height: 80px;
+				padding: 70px;
+			}
+
+			#divInterna {
+				background-color: blue;
+				width: 80px;
+				height: 80px;
+			}
+
+			.focus {
+				background-color: burlywood;
+			}
+
+		</style>
+
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+		<script>
+
+			$(document).ready(() => {
+				$('#onload').html('A página foi carregada');
+
+				$(window).scroll(() => {
+				$('#scroll').html('A página foi rolada');
+				})
+
+				$(window).resize(() => {
+					$('#resize').html('Janela redimencionada');
+				})
+
+				$('#btn1').mousedown(() => {
+					$('#div1').css('background-color', 'green');
+				})
+
+				$('#btn1').mouseup(() => {
+					$('#div1').css('background-color', 'blue');
+				})
+
+				$('#btn2').dblclick(() => {
+					$('#div1').css('background-color', 'yellow');
+				})
+
+				$('#div1').mousemove(e => {
+					$('#resultado').html(e.offsetX + ' / ' + e.offsetY);
+				})
+
+				/* mouseover / mouseout (antigos)
+				$('#divExterna').mouseover(() => {
+					console.log('Div Externa: entrou');
+					$('#resultadoExterno').html('entrou');
+				})
+
+				$('#divExterna').mouseout(() => {
+					console.log('Div Externa: saiu');
+					$('#resultadoExterno').html('saiu');
+				})
+
+				$('#divInterna').mouseover(() => {
+					console.log('Div Interna: entrou');
+					$('#resultadoInterno').html('entrou');
+				})
+
+				$('#divInterna').mouseout(() => {
+					console.log('Div Interna: saiu');
+					$('#resultadoInterno').html('saiu');
+				})*/
+
+				// mouseenter / mouseleave (novos)
+				$('#divExterna').mouseenter(() => {
+					console.log('Div Externa: entrou');
+					$('#resultadoExterno').html('entrou');
+				})
+
+				$('#divExterna').mouseleave(() => {
+					console.log('Div Externa: saiu');
+					$('#resultadoExterno').html('saiu');
+				})
+
+				$('#divInterna').mouseenter(() => {
+					console.log('Div Interna: entrou');
+					$('#resultadoInterno').html('entrou');
+				})
+
+				$('#divInterna').mouseleave(() => {
+					console.log('Div Interna: saiu');
+					$('#resultadoInterno').html('saiu');
+				})
+
+				// =============================================
+
+				$('#input').keydown(() => {
+					$('#resultadoInput').html('Tecla pressionada');
+				})
+
+				$('#input').keyup(e => {
+					$('#resultadoInput').html('Tecla liberada');
+
+					if(e.keyCode == 13){
+						let text = $(e.target).val();
+						$('#resultadoInput').html(text);
+						$(e.target).val('');
+					}
+				})
+
+				// ===============================================
+
+				$('#nome, #email').focus(e => {
+					$(e.target).addClass('focus');
+				})
+				$('#nome, #email').blur(e => {
+					$(e.target).removeClass('focus');
+				})
+
+				$('#motivo').change(e => {
+					$('#resultadoMotivo').html(e.target.value);
+				})
+
+				$('#form').submit(e => {
+					e.preventDefault();
+					console.log($('#nome').val(), $('#email').val());
+				})
+
+			})
+
+		</script>
+	</head>
+
+	<body>
+		
+		<div id="topo">
+			<h1>Eventos</h1>
+		</div>
+
+		<div>
+			<h3>Browser</h3>
+			<span>Onload: </span><span id="onload">?</span><br />
+			<span>Scroll: </span><span id="scroll">?</span><br />
+			<span>Resize window: </span><span id="resize">?</span>
+			<hr />
+
+			<h3>Mouse</h3>
+			<button type="button" id="btn1">Clique aqui</button>
+			<button type="button" id="btn2">Clique aqui 2x</button>
+			<div id="div1" style="background-color: red; width: 80px; height: 50px; margin-top: 10px; margin-bottom: 10px"></div>
+			<span id="resultado">Resultado do evento sobre a div</span>
+
+			<div id="divExterna">
+				<div id="divInterna"></div>
+			</div>
+			<p>Divisão Externa: <span id="resultadoExterno"></span></p>
+			<p>Divisão Interno: <span id="resultadoInterno"></span></p>
+
+			<hr />
+
+			<h3>Teclado</h3>
+			<span>Nome:</span>
+			<input type="text" id="input"/>
+			<span id="resultadoInput">Resultado do evento sobre o input</span>
+			<hr />
+
+			<h3>Formulário</h3>
+			<form id="form">
+				<span>Nome:</span>
+				<input type="text" id="nome"/>
+
+				<span>E-mail:</span>
+				<input type="text" id="email"/>
+
+				<span>Motivo do contato:</span>
+				<select id="motivo">
+					<option value="">-- Selecione --</option>
+					<option value="duvida">Dúvida</option>
+					<option value="sugestao">Sugestão</option>
+				</select>
+				
+				<button type="submit">Enviar</button>
+			</form>
+
+			<span>Resultado motivo: <span id="resultadoMotivo"></span></span>
+
+		</div>
+	</body>
+
+</html>
