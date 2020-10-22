@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8">
+		<title>jQuery</title>
+
+		<style>
+			
+			#div1{
+				width: 80px;
+				height: 80px;
+				border: 1px solid black;
+			}
+
+			#div2 {
+				width: 80px;
+				height: 80px;
+				border: 1px solid #000;
+			}
+
+			.mouseEntrou {
+				background-color: red;
+			}
+
+		</style>
+
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+		<script>
+
+			$(document).ready(() => {
+				
+				// O botão 1 dispara o evento do botão 2
+				$('#btn1').on('click', () => $('#btn2').trigger('click'));
+				$('#btn2').on('click', () => alert('Botão 2 clicado'));
+
+				// Função hover()
+				$('#div1').hover(
+					e => $(e.target).addClass('mouseEntrou'),
+					e => $(e.target).removeClass('mouseEntrou')
+				)
+
+				// Função toggleClass()
+				$('#div2').hover(
+					e => $(e.target).toggleClass('mouseEntrou')
+				)
+
+			})
+
+		</script>
+	</head>
+
+	<body>
+		
+		<button id="btn1">Botão 1</button>
+		<button id="btn2">Botão 2</button>
+		<br> <br>
+		<div id="div1"></div>
+		<br>
+		<div id="div2"></div>
+
+	</body>
+
+</html>
