@@ -20,4 +20,21 @@ $(document).ready(() => {
         $.post('suporte.html', data => $('#pagina').html(data));
     });
 
+    $('#competencia').on('change', e => {
+
+        let competencia = $(e.target).val();
+
+        $.ajax({
+            type: 'GET',
+            url: 'app.php',
+            data : `competencia=${competencia}`,
+            dataType: 'json',
+            success: dados => {
+                $('#numeroVendas').html(dados.numero_vendas);
+                $('#totalVendas').html(dados.total_vendas);
+            },
+            error: erro => console.log(erro)
+        })
+    });
+
 })

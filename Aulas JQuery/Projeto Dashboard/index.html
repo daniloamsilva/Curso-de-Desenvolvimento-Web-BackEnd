@@ -28,14 +28,14 @@
 		  
 		            <ul id="menu-content" class="menu-content collapse out">
 		                <li>
-		                  <a href="#"><i class="fa fa-tachometer-alt sidebar-icon"></i> Dashboard</a>
+		                  <a id="dashboard" href="#"><i class="fa fa-tachometer-alt sidebar-icon"></i> Dashboard</a>
 		                </li>
 		                
 		                <li  data-toggle="collapse" data-target="#ajuda" class="collapsed">
 		                    <a href="#"><i class="fa fa-life-ring sidebar-icon"></i> Ajuda <span class="arrow"><i class="fa fa-angle-down"></i></spam></a>
 		                </li>
 		                <ul class="sub-menu collapse" id="ajuda">
-		                    <li><a id="documentacao"href="#"><i class="fa fa-angle-right"></i> Documentação</a></li>
+		                    <li><a id="documentacao" href="#"><i class="fa fa-angle-right"></i> Documentação</a></li>
 		                    <li><a id="suporte" href="#"><i class="fa fa-angle-right"></i> Suporte <small><i class="fa fa-external-link"></i></small></a></li>
 		                </ul>
 		            </ul>
@@ -54,7 +54,7 @@
 							<div class="form-group row">
 								<label class="col-sm-9 col-form-label">Competência:</label>
 								<div class="col-sm-3">
-									<select class="form-control-plaintext">
+									<select class="form-control-plaintext" id="competencia">
 										<option value="">-- Selecione </option>
 										<option value="2018-08">Agosto / 2018</option>
 										<option value="2018-09">Setembro / 2018</option>
@@ -76,7 +76,7 @@
 								Número de vendas
 							</div>
 							<div class="card-body">
-								 <h5 class="card-title">?</h5>
+								 <h5 class="card-title" id="numeroVendas">?</h5>
 							</div>
 						</div>
 					</div>
@@ -87,7 +87,7 @@
 								Total de vendas
 							</div>
 							<div class="card-body">
-								 <h5 class="card-title">?</h5>
+								 <h5 class="card-title" id="totalVendas">?</h5>
 							</div>
 						</div>
 		    		</div>
