@@ -12,7 +12,7 @@ class AuthController extends Action {
         
         $usuario = Container::getModel('usuario');
         $usuario->__set('email', $_POST['email']);
-        $usuario->__set('senha', $_POST['senha']);
+        $usuario->__set('senha', md5($_POST['senha']));
         $usuario->autenticar();
 
         if($usuario->__get('id') && $usuario->__get('nome')){
