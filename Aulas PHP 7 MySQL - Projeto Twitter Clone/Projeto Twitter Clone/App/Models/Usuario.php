@@ -1,74 +1,84 @@
 <?php
 
-    namespace App\Models;
-    use MF\Model\Model;
+namespace App\Models;
 
-    class Usuario extends Model {
-        
-        private $id;
-        private $nome;
-        private $email;
-        private $senha;
+use MF\Model\Model;
 
-        public function __set($atributo, $valor){
-            $this->$atributo = $valor;
-        }
+class Usuario extends Model {
 
-        public function __get($atributo){
-            return $this->$atributo;
-        }
+	private $id;
+	private $nome;
+	private $email;
+	private $senha;
 
-        //salvar
-        public function salvar(){
-            $query = "INSERT INTO usuarios(nome, email, senha) VALUE(:nome, :email, :senha);";
-            $stmt = $this->db->prepare($query);
-            $stmt->bindValue(':nome', $this->__get('nome'));
-            $stmt->bindValue(':email', $this->__get('email'));
-            $stmt->bindValue(':senha', $this->__get('senha'));
-            $stmt->execute();
+	public function __get($atributo) {
+		return $this->$atributo;
+	}
 
-            return $this;
-        }
+	public function __set($atributo, $valor) {
+		$this->$atributo = $valor;
+	}
 
-        //validar cadastro para registro
-        public function validarCadastro(){
-            
-            if( strlen($this->__get('nome')) < 3 ||
-                strlen($this->__get('email')) < 3 ||
-                strlen($this->__get('senha')) < 3 )
-                return false;
+	//salvar
+	public function salvar() {
 
-            return true;
-        }
+		$query = "insert into usuarios(nome, email, senha)values(:nome, :email, :senha)";
+		$stmt = $this->db->prepare($query);
+		$stmt->bindValue(':nome', $this->__get('nome'));
+		$stmt->bindValue(':email', $this->__get('email'));
+		$stmt->bindValue(':senha', $this->__get('senha')); //md5() -> hash 32 caracteres
+		$stmt->execute();
 
-        //recupera um usuario por email
-        public function getUsuarioPorEmail(){
-            $query = "SELECT nome, email FROM usuarios WHERE email = :email";
-            $stmt = $this->db->prepare($query);
-            $stmt->bindValue(':email', $this->__get('email'));
-            $stmt->execute();
+		return $this;
+	}
 
-            return $stmt->fetchAll(\PDO::FETCH_ASSOC);
-        }
+	//validar se um cadastro pode ser feito
+	public function validarCadastro() {
+		$valido = true;
 
-        //autenticação de usuario
-        public function autenticar(){
-            $query = "SELECT id, nome, email FROM usuarios WHERE email = :email AND senha = :senha";
-            $stmt = $this->db->prepare($query);
-            $stmt->bindValue(':email', $this->__get('email'));
-            $stmt->bindValue(':senha', $this->__get('senha'));
-            $stmt->execute();
+		if(strlen($this->__get('nome')) < 3) {
+			$valido = false;
+		}
 
-            $usuario = $stmt->fetch(\PDO::FETCH_ASSOC);
+		if(strlen($this->__get('email')) < 3) {
+			$valido = false;
+		}
 
-            if($usuario['id'] != '' && $usuario['nome'] != '') {
-                $this->__set('id', $usuario['id']);
-                $this->__set('nome', $usuario['nome']);
-            }
+		if(strlen($this->__get('senha')) < 3) {
+			$valido = false;
+		}
 
-            return $this;
-        }
 
-    }
+		return $valido;
+	}
+
+	//recuperar um usuário por e-mail
+	public function getUsuarioPorEmail() {
+		$query = "select nome, email from usuarios where email = :email";
+		$stmt = $this->db->prepare($query);
+		$stmt->bindValue(':email', $this->__get('email'));
+		$stmt->execute();
+
+		return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+	}
+
+	public function autenticar() {
+
+		$query = "select id, nome, email from usuarios where email = :email and senha = :senha";
+		$stmt = $this->db->prepare($query);
+		$stmt->bindValue(':email', $this->__get('email'));
+		$stmt->bindValue(':senha', $this->__get('senha'));
+		$stmt->execute();
+
+		$usuario = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+		if($usuario['id'] != '' && $usuario['nome'] != '') {
+			$this->__set('id', $usuario['id']);
+			$this->__set('nome', $usuario['nome']);
+		}
+
+		return $this;
+	}
+}
 
 ?>
