@@ -30,6 +30,16 @@ class Tweet extends Model {
 		return $this;
 	}
 
+	//remover
+	public function remover() {
+		$query = 'DELETE FROM tweets WHERE id = :id_tweet';
+		$stmt = $this->db->prepare($query);
+		$stmt->bindValue(':id_tweet', $this->__get('id'));
+		$stmt->execute();
+
+		return true;
+	}
+
 	//recuperar
 	public function getAll() {
 

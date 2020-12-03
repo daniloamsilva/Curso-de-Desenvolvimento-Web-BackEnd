@@ -79,6 +79,13 @@ class AppController extends Action {
 
 		$this->view->usuarios = $usuarios;
 
+		$usuario = Container::getModel('Usuario');
+		$usuario->__set('id', $_SESSION['id']);
+		$this->view->info_usuario = $usuario->getInfoUsuario();
+		$this->view->total_tweets = $usuario->getTotalTweets();
+		$this->view->total_seguindo = $usuario->getTotalSeguindo();
+		$this->view->total_seguidores = $usuario->getTotalSeguidores();
+
 		$this->render('quemSeguir');
 	}	
 
@@ -98,6 +105,14 @@ class AppController extends Action {
 		}
 
 		\header('Location: /quem_seguir');
+	}
+
+	public function remover_tweet() {
+		$this->validaAutenticacao();
+
+		echo '<pre>';
+		print_r($_GET);
+		echo '</pre>';
 	}
 
 }

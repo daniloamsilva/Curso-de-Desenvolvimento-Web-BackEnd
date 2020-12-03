@@ -156,6 +156,7 @@ class Usuario extends Model {
 
 		return $stmt->fetch(\PDO::FETCH_ASSOC);
 	}
+	
 }
 
 ?>
